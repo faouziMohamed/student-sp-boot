@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  mysqldb:
+    image: mysql:8.0
+    restart: 'unless-stopped'
+    container_name: mysqlDb
+    environment:
+      MYSQL_ROOT_USER: 'root'
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'student'
+      MYSQL_USER: 'faouzi'
+      MYSQL_PASSWORD: 'faouzi'
+    ports:
+      - '3306:3306'
+    networks:
+      - mydb-net
+    volumes:
+      - my-storage:/var/lib/mysql
+    cap_add:
+      - SYS_NICE
+
+volumes:
+  my-storage:
+
+networks:
+  mydb-net:
